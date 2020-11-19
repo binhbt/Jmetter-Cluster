@@ -7,6 +7,8 @@ services:
       - "60000:60000"
     networks:
       - jm-network
+    volumes:
+        - /jmeter:/jmeter1
     deploy:
       replicas: 1
       restart_policy:
