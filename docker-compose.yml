@@ -1,39 +1,21 @@
 version: "3.1"
 services:
   master:
-    image: ajeetraina/apache-jmeter-master
-    tty: true
+    build: ./master
+    image: treiro/apache-jmeter-master
     ports:
       - "60000:60000"
     networks:
       - jm-network
     volumes:
         - /jmeter:/jmeter1
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 120s
-      placement:
-          constraints: [node.role == manager]
   slave:
-    image: ajeetraina/apache-jmeter-server
-    tty: true
+    build: ./slave
+    image: treiro/apache-jmeter-server
     networks:
       - jm-network
     ports:
       - "50000:50000"
       - "1099:1099"
-    deploy:
-      mode: global
-      restart_policy:
-        condition: on-failure
-        delay: 10s
-        max_attempts: 3
-        window: 120s
-      placement:
-        constraints: [node.role == worker]
 networks:
   jm-network:
