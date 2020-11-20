@@ -8,6 +8,7 @@ services:
     networks:
       - jm-network
     volumes:
+        - /jmeterx:/jmeter
         - /jmeter:/jmeter1
   slave:
     build: ./slave
