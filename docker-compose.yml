@@ -1,7 +1,7 @@
 version: "3.1"
 services:
   master:
-    build: ./master
+    build: ./jmaster
     image: treiro/apache-jmeter-master
     ports:
       - "60000:60000"
@@ -11,7 +11,7 @@ services:
         - /jmeterx:/jmeter
         - /jmeter:/jmeter1
   slave:
-    build: ./slave
+    build: ./jslave
     image: treiro/apache-jmeter-server
     networks:
       - jm-network
